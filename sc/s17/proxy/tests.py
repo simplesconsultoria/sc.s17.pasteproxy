@@ -12,8 +12,8 @@ class ProxyTests(unittest.TestCase):
         pass
 
     def test_paste_website(self):
-        app = proxy.make_proxy('http://pythonpaste.org')
+        app = proxy.make_proxy({},'http://pythonpaste.org')
         app = TestApp(app)
         res = app.get('/')
-        self.assert('documentation' in res)
+        self.assertTrue('documentation' in res)
 

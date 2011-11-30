@@ -5,9 +5,10 @@ from paste.util.converters import aslist
 
 class Proxy(proxy.Proxy):
 
-    def __init__(self, **kwargs):
+    def __init__(self, address, **kwargs):
         self.remote_user_header = kwargs['remote_user_header']
-        super(Proxy, self).__init__(**kwargs)
+        del(kwargs['remote_user_header'])
+        super(Proxy, self).__init__(address, **kwargs)
 
     def __call__(self, environ, start_response):
         # If we have a REMOTE_USER, we pass that to the backend
