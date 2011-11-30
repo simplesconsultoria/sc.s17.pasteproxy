@@ -1,7 +1,7 @@
 Changelog
 =========
 
-1.0dev (unreleased)
+0.5 (unreleased)
 -------------------
 
 * Initial release [ericof]
