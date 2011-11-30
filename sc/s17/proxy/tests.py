@@ -77,13 +77,38 @@ def serve(application, host=None, port=None, handler=None):
 class ProxyTests(unittest.TestCase):
 
     def setUp(self):
-        pass
+        self.setUpServer()
+
+    def setUpServer(self):
+
+        def my_wsgi_app(environ, start_response):
+            start_response('200 OK', [('content-type', 'text/html')])
+            if environ.get('HTTP_X_REMOTE_USER', '') == 'FooBar':
+                return 'User FooBar'
+            return 'Just Foo'
+
+        server = serve(my_wsgi_app, host='127.0.0.1', port=9876)
+        self.server = server
 
     def tearDown(self):
-        pass
+        self.server.stop()
+        time.sleep(.5)
+        del(self.server)
 
-    def test_paste_website(self):
-        app = proxy.make_proxy({}, 'http://pythonpaste.org')
+    def test_proxy_no_header(self):
+        app = proxy.make_proxy({},
+                               'http://localhost:9876',
+                               remote_user_header="HTTP_X_REMOTE_USER")
         app = TestApp(app)
+        self.server.accept(1)
         res = app.get('/')
-        self.assertTrue('documentation' in res)
+        self.assertTrue('Just Foo' in res)
+
+    def test_paste_with_remote_user(self):
+        app = proxy.make_proxy({},
+                               'http://localhost:9876',
+                               remote_user_header="HTTP_X_REMOTE_USER")
+        app = TestApp(app)
+        self.server.accept(1)
+        res = app.get('/', extra_environ={'REMOTE_USER': 'FooBar'})
+        self.assertTrue('User FooBar' in res)
