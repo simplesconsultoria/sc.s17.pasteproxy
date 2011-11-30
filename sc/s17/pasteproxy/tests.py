@@ -8,7 +8,7 @@ import unittest
 from paste import httpserver
 from paste.fixture import TestApp
 
-from sc.s17.proxy import proxy
+from sc.s17.pasteproxy import proxy
 
 
 class WSGIRegressionServer(httpserver.WSGIServer):

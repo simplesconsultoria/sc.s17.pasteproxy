@@ -11,7 +11,7 @@ requires = [
 
 tests_requires = requires + ['WebTest', 'nose']
 
-setup(name='sc.s17.proxy',
+setup(name='sc.s17.pasteproxy',
       version=version,
       description="""A wsgi proxy that pass REMOTE_USER environment variable
                      to the backend as something like HTTP_X_REMOTE_USER""",
@@ -21,14 +21,13 @@ setup(name='sc.s17.proxy',
       # http://pypi.python.org/pypi?:action=list_classifiers
       classifiers=[
           "Programming Language :: Python",
-          "Framework :: Pylons",
           "Topic :: Internet :: WWW/HTTP",
           "Topic :: Internet :: WWW/HTTP :: WSGI :: Application",
         ],
-      keywords='web pyramid pylons wsgi login repozo.who',
+      keywords='web pyramid wsgi proxy paste',
       author='Simples Consultoria',
       author_email='products@simplesconsultoria.com.br',
-      url='http://svn.plone.org/svn/collective/',
+      url='https://github.com/simplesconsultoria/sc.s17.pasteproxy',
       license='GPL',
       packages=find_packages(exclude=['ez_setup']),
       namespace_packages=['sc', 'sc.s17'],
@@ -36,10 +35,10 @@ setup(name='sc.s17.proxy',
       zip_safe=False,
       install_requires=requires,
       tests_require=tests_requires,
-      test_suite="sc.s17.proxy",
+      test_suite="sc.s17.pasteproxy",
       entry_points="""
       # -*- Entry points: -*-
       [paste.app_factory]
-      main = sc.s17.proxy:main
+      main = sc.s17.pasteproxy:main
       """,
       )
