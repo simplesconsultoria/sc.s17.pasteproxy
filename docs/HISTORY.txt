@@ -1,8 +1,8 @@
 Changelog
 =========
 
-0.6 (unreleased)
-----------------
+0.5.1 (2011-12-01)
+------------------
 
 * Fix paste entry point [ericof]
 
