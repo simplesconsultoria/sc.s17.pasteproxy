@@ -39,6 +39,6 @@ setup(name='sc.s17.pasteproxy',
       entry_points="""
       # -*- Entry points: -*-
       [paste.app_factory]
-      main = sc.s17.pasteproxy:main
+      proxy = sc.s17.pasteproxy.proxy:make_proxy
       """,
       )
