@@ -1,8 +1,8 @@
 Changelog
 =========
 
-0.7 (unreleased)
-----------------
+0.6.1 (2012-01-25)
+------------------
 
 * Add README.rst to source distribution [ericof]
 
